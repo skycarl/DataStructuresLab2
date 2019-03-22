@@ -1,0 +1,42 @@
+
+Number of rings: 1
+Solution type: Recursive
+Runtime: 0ms
+
+-----------------------------
+
+Number of rings: 2
+Solution type: Recursive
+Runtime: 0ms
+
+-----------------------------
+
+Number of rings: 3
+Solution type: Recursive
+Runtime: 0ms
+
+-----------------------------
+
+Number of rings: 4
+Solution type: Recursive
+Runtime: 1ms
+
+-----------------------------
+
+Number of rings: 5
+Solution type: Recursive
+Runtime: 2ms
+
+-----------------------------
+
+Number of rings: 6
+Solution type: Recursive
+Runtime: 7ms
+
+-----------------------------
+
+Number of rings: 7
+Solution type: Recursive
+Runtime: 11ms
+
+-----------------------------
