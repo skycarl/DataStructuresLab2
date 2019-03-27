@@ -10,6 +10,7 @@
 
 import java.io.*;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Lab2 {
 
@@ -45,10 +46,12 @@ public class Lab2 {
         long endTime;
         long runTime;
 
+
+        // ******** Recursive solution ********
         // Loop through problems from 1 to size specified in input file
         for (int runProblemSize = 1; runProblemSize <= maxProblemSize; runProblemSize++) {
 
-            // Start
+            // Start the timer
             startTime = System.currentTimeMillis();
 
             // Recursive solution
@@ -61,11 +64,21 @@ public class Lab2 {
         }
 
 
-        // Iterative solution
-        // TODO finish developing pseudocode for iterative solution and implement here
-        //
 
+        // ******** Iterative solution ********
+        for (int runProblemSize = 1; runProblemSize <= maxProblemSize; runProblemSize++) {
 
+            // Start the timer
+            startTime = System.currentTimeMillis();
+
+            // Recursive solution
+            moveRingsIterative(runProblemSize, outfile);
+
+            // Stop the timer and send to results
+            endTime = System.currentTimeMillis();
+            runTime = endTime - startTime;
+            printStatsToFile(runProblemSize, runTime, "Iterative", outfile);
+        }
     }
 
 
@@ -150,12 +163,12 @@ public class Lab2 {
         try {
             // Create FileWriter object in append mode
             output = new FileWriter(outputFile, true);
-            //output.write("\nMove disk " + disk);
-            //output.write(" from tower " + originTower + " to tower " + destinationTower);
+            output.write("\nMove disk " + disk);
+            output.write(" from tower " + originTower + " to tower " + destinationTower);
 
             // TODO remove this temp print statement
-            //System.out.print("\nMove disk " + disk);
-            //System.out.print(" from tower " + originTower + " to tower " + destinationTower);
+            System.out.print("\nMove disk " + disk);
+            System.out.print(" from tower " + originTower + " to tower " + destinationTower);
 
 
             output.close();
@@ -191,8 +204,93 @@ public class Lab2 {
         moveRingsRecursive(remainingDisks - 1, auxiliaryTower, originTower, destTower, outputFile);
     }
 
+    /**
+     * This method performs the operations iteratively.
+     * @param problemSize
+     * @param outputFile
+     */
+    private static void moveRingsIterative(int problemSize, String outputFile) {
 
+        // Create and initialize the towers
+        Tower originTower = new Tower(problemSize);
+        Tower auxiliaryTower = new Tower(problemSize);
+        Tower destinationTower = new Tower(problemSize);
+        int tempDisk;
 
+        // Load the originTower with values
+        for (int i = problemSize; i > 0; i--) {
+            try {
+                originTower.push(i);
+            }
+            catch (StackOverflow so) {
+                so.toString();
+            }
+        }
 
+        // Calculate the number of moves in the problem
+        int numMoves = (int) (Math.pow(2, problemSize) - 1);
 
+        // Perform the initial move
+        if (problemSize % 2 == 0) {
+            try {
+                destinationTower.push(originTower.pop());
+                printMoveToFile(problemSize, 'A', 'C', outputFile);
+            }
+            catch (StackUnderflow su) {
+                su.toString();
+            }
+            catch (StackOverflow so) {
+                so.toString();
+            }
+        }
+
+        // Perform the iterative moves
+        for (int j = 1; j <= numMoves; j++) {
+            if (j % 3 == 0) {
+
+                // Move from B to C
+                try { // TODO remove this trc block
+                    tempDisk = auxiliaryTower.pop();
+                    printMoveToFile(tempDisk, 'B', 'C', outputFile );
+                    destinationTower.push(tempDisk);
+                }
+                catch (StackUnderflow su) {
+                    su.toString();
+                }
+                catch (StackOverflow so) {
+                    so.toString();
+                }
+            }
+            else if (j % 3 == 1) {
+
+                // Move from A to C
+                try { // TODO remove this trc block
+                    tempDisk = originTower.pop();
+                    printMoveToFile(tempDisk, 'A', 'C', outputFile );
+                    destinationTower.push(tempDisk);
+                }
+                catch (StackUnderflow su) {
+                    su.toString();
+                }
+                catch (StackOverflow so) {
+                    so.toString();
+                }
+            }
+            else if (j % 3 == 2) {
+
+                // Move from A to B
+                try { // TODO remove this trc block
+                    tempDisk = originTower.pop();
+                    printMoveToFile(tempDisk, 'A', 'B', outputFile );
+                    auxiliaryTower.push(tempDisk);
+                }
+                catch (StackUnderflow su) {
+                    su.toString();
+                }
+                catch (StackOverflow so) {
+                    so.toString();
+                }
+            }
+        }
+    }
 }
