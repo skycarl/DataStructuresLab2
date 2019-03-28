@@ -1,10 +1,10 @@
 /**
  * This is the class file for the custom StackOverflow exception that is thrown when a value is pushed to the stack,
- * but there is no more room on the stack. This can indicate that the postfix expression is too long.
+ * but there is no more room on the stack.
  *
  * @author Skyler Carlson
- * @version 1.0
- * Date: 2019-03-01
+ * @version 1.1
+ * @since: 2019-03-01
  */
 
 public class StackOverflow extends Exception {
@@ -22,6 +22,6 @@ public class StackOverflow extends Exception {
    */
   @Override
   public String toString() {
-    return "Exception: stack overflow. Input expression could be too long.";
+    return "Exception: stack overflow.";
   }
 }

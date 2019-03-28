@@ -19,7 +19,7 @@ public class Lab2 {
      * @param args Expects two arguments: input filename (containing the value of n) and an output filename
      */
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws StackOverflow, StackUnderflow {
 
         // Verify that input arguments are specified
         if (args.length != 2) {
@@ -46,7 +46,7 @@ public class Lab2 {
         long endTime;
         long runTime;
 
-
+        /*
         // ******** Recursive solution ********
         // Loop through problems from 1 to size specified in input file
         for (int runProblemSize = 1; runProblemSize <= maxProblemSize; runProblemSize++) {
@@ -62,9 +62,11 @@ public class Lab2 {
             runTime = endTime - startTime;
             printStatsToFile(runProblemSize, runTime, "Recursive", outfile);
         }
-
-
-
+        */
+        moveRingsRecursive(4, towerA, towerB, towerC, outfile);
+        System.out.println("\n\n*********");
+        moveRingsIterative(4, outfile);
+        /*
         // ******** Iterative solution ********
         for (int runProblemSize = 1; runProblemSize <= maxProblemSize; runProblemSize++) {
 
@@ -78,7 +80,7 @@ public class Lab2 {
             endTime = System.currentTimeMillis();
             runTime = endTime - startTime;
             printStatsToFile(runProblemSize, runTime, "Iterative", outfile);
-        }
+        } */
     }
 
 
@@ -223,7 +225,7 @@ public class Lab2 {
                 originTower.push(i);
             }
             catch (StackOverflow so) {
-                so.toString();
+                System.out.println(so.toString());
             }
         }
 
@@ -231,16 +233,18 @@ public class Lab2 {
         int numMoves = (int) (Math.pow(2, problemSize) - 1);
 
         // Perform the initial move
+        // TODO this is where the bug is; "If number of disks (i.e. n) is even then interchange destination
+        //   pole and auxiliary pole." Need to interchange the entire poles
         if (problemSize % 2 == 0) {
             try {
                 destinationTower.push(originTower.pop());
-                printMoveToFile(problemSize, 'A', 'C', outputFile);
+                printMoveToFile(1, 'A', 'C', outputFile);
             }
             catch (StackUnderflow su) {
-                su.toString();
+                System.out.println(su.toString());
             }
             catch (StackOverflow so) {
-                so.toString();
+                System.out.println(so.toString());
             }
         }
 
@@ -255,10 +259,10 @@ public class Lab2 {
                     destinationTower.push(tempDisk);
                 }
                 catch (StackUnderflow su) {
-                    su.toString();
+                    System.out.println(su.toString());
                 }
                 catch (StackOverflow so) {
-                    so.toString();
+                    System.out.println(so.toString());
                 }
             }
             else if (j % 3 == 1) {
@@ -270,25 +274,25 @@ public class Lab2 {
                     destinationTower.push(tempDisk);
                 }
                 catch (StackUnderflow su) {
-                    su.toString();
+                    System.out.println(su.toString());
                 }
                 catch (StackOverflow so) {
-                    so.toString();
+                    System.out.println(so.toString());
                 }
             }
             else if (j % 3 == 2) {
 
                 // Move from A to B
                 try { // TODO remove this trc block
-                    tempDisk = originTower.pop();
+                    tempDisk = originTower.pop(); // TODO encounters a stackunderflow here when n=2; stackTop = -1
                     printMoveToFile(tempDisk, 'A', 'B', outputFile );
                     auxiliaryTower.push(tempDisk);
                 }
                 catch (StackUnderflow su) {
-                    su.toString();
+                    System.out.println(su.toString());
                 }
                 catch (StackOverflow so) {
-                    so.toString();
+                    System.out.println(so.toString());
                 }
             }
         }

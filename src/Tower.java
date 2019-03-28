@@ -18,6 +18,7 @@ public class Tower {
    * @param maxsize Maximum size for the stack
    */
   public Tower(int maxsize) {
+    this.maxsize = maxsize;
     this.stackContents = new int[maxsize];
     this.stackTop = -1; // Initialize the stack to be empty
   }
@@ -29,12 +30,12 @@ public class Tower {
    * @throws StackOverflow
    */
   public void push(int element) throws StackOverflow {
-    if ((stackTop + 1) > maxsize) {
+    if ((stackTop + 1) >= maxsize) {
       //System.out.println("Error: Stack overflow");
       //System.exit(1);
       throw new StackOverflow();
     } else {
-      stackContents[++stackTop] = element;
+      this.stackContents[++stackTop] = element;
     }
   }
 
@@ -75,7 +76,12 @@ public class Tower {
    * @return boolean indicating whether the stack is empty.
    */
   public boolean isEmpty() {
-    return stackTop == -1;
+    if (stackTop == -1) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   /**

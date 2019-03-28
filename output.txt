@@ -47,3 +47,435 @@ Solution type: Iterative
 Runtime: 1ms
 
 -----------------------------
+
+Move disk 1 from tower A to tower C
+Number of rings: 1
+Solution type: Iterative
+Runtime: 51506ms
+
+-----------------------------
+
+Move disk 2 from tower A to tower C
+Number of rings: 2
+Solution type: Iterative
+Runtime: 70104ms
+
+-----------------------------
+
+Move disk 3 from tower A to tower C
+Number of rings: 3
+Solution type: Iterative
+Runtime: 2ms
+
+-----------------------------
+
+Move disk 4 from tower A to tower C
+Number of rings: 4
+Solution type: Iterative
+Runtime: 1ms
+
+-----------------------------
+
+Move disk 5 from tower A to tower C
+Number of rings: 5
+Solution type: Iterative
+Runtime: 1ms
+
+-----------------------------
+
+Move disk 6 from tower A to tower C
+Number of rings: 6
+Solution type: Iterative
+Runtime: 1ms
+
+-----------------------------
+
+Move disk 7 from tower A to tower C
+Number of rings: 7
+Solution type: Iterative
+Runtime: 1ms
+
+-----------------------------
+
+Move disk 1 from tower A to tower C
+Number of rings: 1
+Solution type: Iterative
+Runtime: 56ms
+
+-----------------------------
+
+Move disk 2 from tower A to tower C
+Number of rings: 2
+Solution type: Iterative
+Runtime: 1ms
+
+-----------------------------
+
+Move disk 3 from tower A to tower C
+Number of rings: 3
+Solution type: Iterative
+Runtime: 4ms
+
+-----------------------------
+
+Move disk 4 from tower A to tower C
+Number of rings: 4
+Solution type: Iterative
+Runtime: 0ms
+
+-----------------------------
+
+Move disk 5 from tower A to tower C
+Number of rings: 5
+Solution type: Iterative
+Runtime: 1ms
+
+-----------------------------
+
+Move disk 6 from tower A to tower C
+Number of rings: 6
+Solution type: Iterative
+Runtime: 3ms
+
+-----------------------------
+
+Move disk 7 from tower A to tower C
+Number of rings: 7
+Solution type: Iterative
+Runtime: 1ms
+
+-----------------------------
+
+Move disk 1 from tower A to tower C
+Number of rings: 1
+Solution type: Iterative
+Runtime: 44ms
+
+-----------------------------
+
+Move disk 2 from tower A to tower C
+Number of rings: 2
+Solution type: Iterative
+Runtime: 7ms
+
+-----------------------------
+
+Move disk 3 from tower A to tower C
+Number of rings: 3
+Solution type: Iterative
+Runtime: 0ms
+
+-----------------------------
+
+Move disk 4 from tower A to tower C
+Number of rings: 4
+Solution type: Iterative
+Runtime: 2ms
+
+-----------------------------
+
+Move disk 5 from tower A to tower C
+Number of rings: 5
+Solution type: Iterative
+Runtime: 2ms
+
+-----------------------------
+
+Move disk 6 from tower A to tower C
+Number of rings: 6
+Solution type: Iterative
+Runtime: 7ms
+
+-----------------------------
+
+Move disk 7 from tower A to tower C
+Number of rings: 7
+Solution type: Iterative
+Runtime: 4ms
+
+-----------------------------
+
+Move disk 1 from tower A to tower C
+Number of rings: 1
+Solution type: Iterative
+Runtime: 74ms
+
+-----------------------------
+
+Move disk 1 from tower A to tower C
+Number of rings: 1
+Solution type: Iterative
+Runtime: 173184ms
+
+-----------------------------
+
+Move disk 1 from tower A to tower C
+Number of rings: 1
+Solution type: Iterative
+Runtime: 52ms
+
+-----------------------------
+
+Move disk 1 from tower A to tower C
+Number of rings: 1
+Solution type: Iterative
+Runtime: 57ms
+
+-----------------------------
+
+Move disk 2 from tower A to tower C
+Move disk 2 from tower A to tower C
+Number of rings: 2
+Solution type: Iterative
+Runtime: 1ms
+
+-----------------------------
+
+Move disk 1 from tower A to tower C
+Move disk 2 from tower A to tower B
+Move disk 2 from tower B to tower C
+Move disk 3 from tower A to tower C
+Number of rings: 3
+Solution type: Iterative
+Runtime: 1ms
+
+-----------------------------
+
+Move disk 4 from tower A to tower C
+Move disk 2 from tower A to tower C
+Move disk 3 from tower A to tower B
+Move disk 3 from tower B to tower C
+Move disk 4 from tower A to tower C
+Number of rings: 4
+Solution type: Iterative
+Runtime: 5ms
+
+-----------------------------
+
+Move disk 1 from tower A to tower C
+Move disk 2 from tower A to tower B
+Move disk 2 from tower B to tower C
+Move disk 3 from tower A to tower C
+Move disk 4 from tower A to tower B
+Move disk 4 from tower B to tower C
+Move disk 5 from tower A to tower C
+Number of rings: 5
+Solution type: Iterative
+Runtime: 3ms
+
+-----------------------------
+
+Move disk 6 from tower A to tower C
+Move disk 2 from tower A to tower C
+Move disk 3 from tower A to tower B
+Move disk 3 from tower B to tower C
+Move disk 4 from tower A to tower C
+Move disk 5 from tower A to tower B
+Move disk 5 from tower B to tower C
+Move disk 6 from tower A to tower C
+Number of rings: 6
+Solution type: Iterative
+Runtime: 22ms
+
+-----------------------------
+
+Move disk 1 from tower A to tower C
+Move disk 2 from tower A to tower B
+Move disk 2 from tower B to tower C
+Move disk 3 from tower A to tower C
+Move disk 4 from tower A to tower B
+Move disk 4 from tower B to tower C
+Move disk 5 from tower A to tower C
+Move disk 6 from tower A to tower B
+Move disk 6 from tower B to tower C
+Move disk 7 from tower A to tower C
+Number of rings: 7
+Solution type: Iterative
+Runtime: 7ms
+
+-----------------------------
+
+Move disk 1 from tower A to tower C
+Number of rings: 1
+Solution type: Iterative
+Runtime: 267677ms
+
+-----------------------------
+
+Move disk 2 from tower A to tower C
+Move disk 2 from tower A to tower C
+Number of rings: 2
+Solution type: Iterative
+Runtime: 1054219ms
+
+-----------------------------
+
+Move disk 1 from tower A to tower C
+Number of rings: 1
+Solution type: Iterative
+Runtime: 44ms
+
+-----------------------------
+
+Move disk 2 from tower A to tower C
+Move disk 2 from tower A to tower C
+Number of rings: 2
+Solution type: Iterative
+Runtime: 1ms
+
+-----------------------------
+
+Move disk 1 from tower A to tower C
+Number of rings: 1
+Solution type: Iterative
+Runtime: 41ms
+
+-----------------------------
+
+Move disk 2 from tower A to tower C
+Move disk 2 from tower A to tower C
+Number of rings: 2
+Solution type: Iterative
+Runtime: 6ms
+
+-----------------------------
+
+Move disk 1 from tower A to tower C
+Number of rings: 1
+Solution type: Iterative
+Runtime: 117797ms
+
+-----------------------------
+
+Move disk 2 from tower A to tower C
+Move disk 2 from tower A to tower C
+Number of rings: 2
+Solution type: Iterative
+Runtime: 1917068ms
+
+-----------------------------
+
+Move disk 10 from tower A to tower C
+Move disk 2 from tower A to tower C
+Move disk 3 from tower A to tower B
+Move disk 3 from tower B to tower C
+Move disk 4 from tower A to tower C
+Move disk 5 from tower A to tower B
+Move disk 5 from tower B to tower C
+Move disk 6 from tower A to tower C
+Move disk 7 from tower A to tower B
+Move disk 7 from tower B to tower C
+Move disk 8 from tower A to tower C
+Move disk 9 from tower A to tower B
+Move disk 9 from tower B to tower C
+Move disk 10 from tower A to tower C
+Move disk 10 from tower A to tower C
+Move disk 2 from tower A to tower C
+Move disk 3 from tower A to tower B
+Move disk 3 from tower B to tower C
+Move disk 4 from tower A to tower C
+Move disk 5 from tower A to tower B
+Move disk 5 from tower B to tower C
+Move disk 6 from tower A to tower C
+Move disk 7 from tower A to tower B
+Move disk 7 from tower B to tower C
+Move disk 8 from tower A to tower C
+Move disk 9 from tower A to tower B
+Move disk 9 from tower B to tower C
+Move disk 10 from tower A to tower C
+Move disk 1 from tower A to tower C
+Move disk 2 from tower A to tower B
+Move disk 1 from tower C to tower B
+Move disk 3 from tower A to tower C
+Move disk 1 from tower B to tower A
+Move disk 2 from tower B to tower C
+Move disk 1 from tower A to tower C
+Move disk 4 from tower A to tower B
+Move disk 1 from tower C to tower B
+Move disk 2 from tower C to tower A
+Move disk 1 from tower B to tower A
+Move disk 3 from tower C to tower B
+Move disk 1 from tower A to tower C
+Move disk 2 from tower A to tower B
+Move disk 1 from tower C to tower B
+Move disk 5 from tower A to tower C
+Move disk 1 from tower B to tower A
+Move disk 2 from tower B to tower C
+Move disk 1 from tower A to tower C
+Move disk 3 from tower B to tower A
+Move disk 1 from tower C to tower B
+Move disk 2 from tower C to tower A
+Move disk 1 from tower B to tower A
+Move disk 4 from tower B to tower C
+Move disk 1 from tower A to tower C
+Move disk 2 from tower A to tower B
+Move disk 1 from tower C to tower B
+Move disk 3 from tower A to tower C
+Move disk 1 from tower B to tower A
+Move disk 2 from tower B to tower C
+Move disk 1 from tower A to tower C
+Move disk 1 from tower A to tower C
+Move disk 2 from tower A to tower B
+Move disk 2 from tower B to tower C
+Move disk 3 from tower A to tower C
+Move disk 4 from tower A to tower B
+Move disk 4 from tower B to tower C
+Move disk 5 from tower A to tower C
+Move disk 1 from tower A to tower C
+Move disk 2 from tower A to tower B
+Move disk 1 from tower C to tower B
+Move disk 3 from tower A to tower C
+Move disk 1 from tower B to tower A
+Move disk 2 from tower B to tower C
+Move disk 1 from tower A to tower C
+Move disk 4 from tower A to tower B
+Move disk 1 from tower C to tower B
+Move disk 2 from tower C to tower A
+Move disk 1 from tower B to tower A
+Move disk 3 from tower C to tower B
+Move disk 1 from tower A to tower C
+Move disk 2 from tower A to tower B
+Move disk 1 from tower C to tower B
+Move disk 5 from tower A to tower C
+Move disk 1 from tower B to tower A
+Move disk 2 from tower B to tower C
+Move disk 1 from tower A to tower C
+Move disk 3 from tower B to tower A
+Move disk 1 from tower C to tower B
+Move disk 2 from tower C to tower A
+Move disk 1 from tower B to tower A
+Move disk 4 from tower B to tower C
+Move disk 1 from tower A to tower C
+Move disk 2 from tower A to tower B
+Move disk 1 from tower C to tower B
+Move disk 3 from tower A to tower C
+Move disk 1 from tower B to tower A
+Move disk 2 from tower B to tower C
+Move disk 1 from tower A to tower C
+Move disk 1 from tower A to tower C
+Move disk 2 from tower A to tower B
+Move disk 2 from tower B to tower C
+Move disk 3 from tower A to tower C
+Move disk 4 from tower A to tower B
+Move disk 4 from tower B to tower C
+Move disk 5 from tower A to tower C
+Move disk 1 from tower A to tower B
+Move disk 2 from tower A to tower C
+Move disk 1 from tower B to tower C
+Move disk 3 from tower A to tower B
+Move disk 1 from tower C to tower A
+Move disk 2 from tower C to tower B
+Move disk 1 from tower A to tower B
+Move disk 4 from tower A to tower C
+Move disk 1 from tower B to tower C
+Move disk 2 from tower B to tower A
+Move disk 1 from tower C to tower A
+Move disk 3 from tower B to tower C
+Move disk 1 from tower A to tower B
+Move disk 2 from tower A to tower C
+Move disk 1 from tower B to tower C
+Move disk 1 from tower A to tower C
+Move disk 2 from tower A to tower C
+Move disk 3 from tower A to tower B
+Move disk 3 from tower B to tower C
+Move disk 4 from tower A to tower C
