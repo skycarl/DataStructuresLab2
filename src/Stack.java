@@ -1,12 +1,12 @@
 /**
- * This is the Tower class. It allows items to be pushed, popped, peeked at, and
+ * This is the Stack class. It allows items to be pushed, popped, peeked at, and
  * there is also a method to check whether the stack is empty.
  *
  * @author Skyler Carlson
  * @version 2.1
  * @since 2019-02-16
  */
-public class Tower {
+public class Stack {
 
   private int[] stackContents;
   private int maxsize;
@@ -17,7 +17,7 @@ public class Tower {
    *
    * @param maxsize Maximum size for the stack
    */
-  public Tower(int maxsize) {
+  public Stack(int maxsize) {
     this.maxsize = maxsize;
     this.stackContents = new int[maxsize];
     this.stackTop = -1; // Initialize the stack to be empty

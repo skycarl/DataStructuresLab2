@@ -10,7 +10,7 @@
 
 import java.io.*;
 import java.util.Scanner;
-import java.util.Stack;
+//import java.util.Stack;
 
 public class Lab2 {
 
@@ -63,9 +63,9 @@ public class Lab2 {
             printStatsToFile(runProblemSize, runTime, "Recursive", outfile);
         }
         */
-        moveRingsRecursive(4, towerA, towerB, towerC, outfile);
+        //moveRingsRecursive(4, towerA, towerB, towerC, outfile);
         System.out.println("\n\n*********");
-        moveRingsIterative(4, outfile);
+        moveRingsIterative(7, outfile);
         /*
         // ******** Iterative solution ********
         for (int runProblemSize = 1; runProblemSize <= maxProblemSize; runProblemSize++) {
@@ -214,10 +214,15 @@ public class Lab2 {
     private static void moveRingsIterative(int problemSize, String outputFile) {
 
         // Create and initialize the towers
-        Tower originTower = new Tower(problemSize);
-        Tower auxiliaryTower = new Tower(problemSize);
-        Tower destinationTower = new Tower(problemSize);
+        Stack originTower = new Stack(problemSize);
+        Stack auxiliaryTower = new Stack(problemSize);
+        Stack destinationTower = new Stack(problemSize);
         int tempDisk;
+
+        // Create and initialize character representations of the towers
+        char originTowerChar = 'A';
+        char auxTowerChar = 'B';
+        char destinationTowerChar = 'C';
 
         // Load the originTower with values
         for (int i = problemSize; i > 0; i--) {
@@ -232,20 +237,10 @@ public class Lab2 {
         // Calculate the number of moves in the problem
         int numMoves = (int) (Math.pow(2, problemSize) - 1);
 
-        // Perform the initial move
-        // TODO this is where the bug is; "If number of disks (i.e. n) is even then interchange destination
-        //   pole and auxiliary pole." Need to interchange the entire poles
+        // Swap the towers, if the problem size is even
         if (problemSize % 2 == 0) {
-            try {
-                destinationTower.push(originTower.pop());
-                printMoveToFile(1, 'A', 'C', outputFile);
-            }
-            catch (StackUnderflow su) {
-                System.out.println(su.toString());
-            }
-            catch (StackOverflow so) {
-                System.out.println(so.toString());
-            }
+            auxTowerChar = 'C';
+            destinationTowerChar = 'B';
         }
 
         // Perform the iterative moves
@@ -254,9 +249,12 @@ public class Lab2 {
 
                 // Move from B to C
                 try { // TODO remove this trc block
-                    tempDisk = auxiliaryTower.pop();
-                    printMoveToFile(tempDisk, 'B', 'C', outputFile );
-                    destinationTower.push(tempDisk);
+
+                    checkMoveIterative(auxiliaryTower, destinationTower, auxTowerChar, destinationTowerChar, outputFile);
+
+                    //tempDisk = auxiliaryTower.pop();
+                    //printMoveToFile(tempDisk, auxTowerChar, destinationTowerChar, outputFile );
+                    //destinationTower.push(tempDisk);
                 }
                 catch (StackUnderflow su) {
                     System.out.println(su.toString());
@@ -269,9 +267,12 @@ public class Lab2 {
 
                 // Move from A to C
                 try { // TODO remove this trc block
-                    tempDisk = originTower.pop();
-                    printMoveToFile(tempDisk, 'A', 'C', outputFile );
-                    destinationTower.push(tempDisk);
+
+                    checkMoveIterative(originTower, destinationTower, originTowerChar, destinationTowerChar, outputFile);
+                    
+                    //tempDisk = originTower.pop();
+                    //printMoveToFile(tempDisk, originTowerChar, destinationTowerChar, outputFile );
+                    //destinationTower.push(tempDisk);
                 }
                 catch (StackUnderflow su) {
                     System.out.println(su.toString());
@@ -284,9 +285,14 @@ public class Lab2 {
 
                 // Move from A to B
                 try { // TODO remove this trc block
-                    tempDisk = originTower.pop(); // TODO encounters a stackunderflow here when n=2; stackTop = -1
-                    printMoveToFile(tempDisk, 'A', 'B', outputFile );
-                    auxiliaryTower.push(tempDisk);
+
+                    checkMoveIterative(originTower, auxiliaryTower, originTowerChar, auxTowerChar, outputFile);
+
+
+
+                    //tempDisk = originTower.pop(); // TODO encounters a stackunderflow here when n=2; stackTop = -1
+                    //printMoveToFile(tempDisk, originTowerChar, auxTowerChar, outputFile );
+                    //auxiliaryTower.push(tempDisk);
                 }
                 catch (StackUnderflow su) {
                     System.out.println(su.toString());
@@ -295,6 +301,37 @@ public class Lab2 {
                     System.out.println(so.toString());
                 }
             }
+        }
+    }
+
+    /**
+     * This class finds which move between the two towers passed is valid. It then makes the valid move.
+     * @param tower1        The tower from which the ring is being moved.
+     * @param tower2        The tower to which the ring is being moved.
+     * @param tower1char    The char representation of the source tower.
+     * @param tower2char    The char representation of the destination tower.
+     * @param outputFile    A string representing the name of the output file.
+     */
+    private static void checkMoveIterative(Stack tower1, Stack tower2, char tower1char, char tower2char, String outputFile) throws StackOverflow, StackUnderflow {
+        int tempDisk;
+
+        // If one of the towers is empty, move the ring to the empty tower
+        if (tower1.isEmpty()) {
+            tempDisk = tower2.pop();
+            printMoveToFile(tempDisk, tower2char, tower1char, outputFile);
+            tower1.push(tempDisk);
+        }
+        else if (tower2.isEmpty()){
+            tempDisk = tower1.pop();
+            printMoveToFile(tempDisk, tower1char, tower2char, outputFile);
+            tower2.push(tempDisk);
+        }
+
+        // A larger disk cannot go on top of a smaller disk
+        else if (tower1.peek() < tower2.peek()) {
+            tempDisk = tower1.pop();
+            printMoveToFile(tempDisk, tower1char, tower2char, outputFile);
+            tower2.push(tempDisk);
         }
     }
 }
