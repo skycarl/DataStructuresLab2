@@ -27,8 +27,6 @@ public class Lab2 {
             System.exit(1);
         }
 
-        // TODO test weird input files
-
         // Define output filename for easier use throughout the program
         String outfile = args[1];
 
@@ -52,7 +50,6 @@ public class Lab2 {
             System.exit(1);
         }
 
-
         // Define the towers
         char towerA = 'A';
         char towerB = 'B';
@@ -64,8 +61,8 @@ public class Lab2 {
         long runTime;
 
         // Declare arrays to store runtimes for easier printing at the end
-        long recursiveRuntimes[] = new long[maxProblemSize];
-        long iterativeRuntimes[] = new long[maxProblemSize];
+        long recursiveRunTimes[] = new long[maxProblemSize];
+        long iterativeRunTimes[] = new long[maxProblemSize];
 
 
         // ******** Recursive solution ********
@@ -82,7 +79,7 @@ public class Lab2 {
             endTime = System.nanoTime();
             runTime = endTime - startTime;
             printStatsToFile(runProblemSize, runTime, "Recursive", outfile);
-            recursiveRuntimes[runProblemSize-1] = runTime;
+            recursiveRunTimes[runProblemSize-1] = runTime;
         }
 
         // ******** Iterative solution ********
@@ -97,12 +94,26 @@ public class Lab2 {
             endTime = System.nanoTime();
             runTime = endTime - startTime;
             printStatsToFile(runProblemSize, runTime, "Iterative", outfile);
-            iterativeRuntimes[runProblemSize-1] = runTime;
+            iterativeRunTimes[runProblemSize-1] = runTime;
         }
+
+        // Print the summary stats to file
+        printSummaryStats(outfile, maxProblemSize, recursiveRunTimes, iterativeRunTimes);
 
         // Print message that program has completed
         System.out.println("Program completed for n = " + maxProblemSize);
+    }
 
+
+    /**
+     * This method prints summary statistics to the output file.
+     * @param outfile               The name of the output file.
+     * @param maxProblemSize        The maximum number of rings tested.
+     * @param recursiveRunTimes     An array of the recursive run times for all n values, in nanoseconds.
+     * @param iterativeRunTimes     An array of the iterative run times for all n values, in nanoseconds.
+     */
+    private static void printSummaryStats(String outfile, int maxProblemSize,
+        long[] recursiveRunTimes, long[] iterativeRunTimes) {
         // Create FileWriter object to print summary statistics to file
         FileWriter output;
         String tempRecursiveString;
@@ -122,8 +133,8 @@ public class Lab2 {
             for (int k = 0; k < maxProblemSize; k++) {
 
                 // Format output strings
-                tempRecursiveString = String.format("\n%7d%15s%19d", k+1, "Recursive", recursiveRuntimes[k]);
-                tempIterativeString = String.format("\n%7d%15s%19d", k+1, "Iterative", iterativeRuntimes[k]);
+                tempRecursiveString = String.format("\n%7d%15s%19d", k+1, "Recursive", recursiveRunTimes[k]);
+                tempIterativeString = String.format("\n%7d%15s%19d", k+1, "Iterative", iterativeRunTimes[k]);
 
                 // Print the data to the table
                 output.write(tempRecursiveString);
@@ -371,4 +382,5 @@ public class Lab2 {
         oldFile.delete();
         System.out.println("Previous file \'" + filename + "\' deleted.\n");
     }
+
 }
