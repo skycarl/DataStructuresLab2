@@ -63,7 +63,7 @@ public class Lab2 {
             printStatsToFile(runProblemSize, runTime, "Recursive", outfile);
         }
         */
-        //moveRingsRecursive(4, towerA, towerB, towerC, outfile);
+        moveRingsRecursive(7, towerA, towerB, towerC, outfile);
         System.out.println("\n\n*********");
         moveRingsIterative(7, outfile);
         /*
@@ -290,7 +290,7 @@ public class Lab2 {
 
 
 
-                    //tempDisk = originTower.pop(); // TODO encounters a stackunderflow here when n=2; stackTop = -1
+                    //tempDisk = originTower.pop();
                     //printMoveToFile(tempDisk, originTowerChar, auxTowerChar, outputFile );
                     //auxiliaryTower.push(tempDisk);
                 }
@@ -332,6 +332,11 @@ public class Lab2 {
             tempDisk = tower1.pop();
             printMoveToFile(tempDisk, tower1char, tower2char, outputFile);
             tower2.push(tempDisk);
+        }
+        else if (tower2.peek() < tower1.peek()) {
+            tempDisk = tower2.pop();
+            printMoveToFile(tempDisk, tower2char, tower1char, outputFile);
+            tower1.push(tempDisk);
         }
     }
 }
