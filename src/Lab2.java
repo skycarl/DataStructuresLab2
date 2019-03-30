@@ -4,11 +4,12 @@
   output file.
 
   @author Skyler Carlson
- * @version 1.1
+ * @version 1.2
  * @since 2019-03-13
  */
 
 import java.io.*;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 //import java.util.Stack;
 
@@ -27,14 +28,32 @@ public class Lab2 {
             System.exit(1);
         }
 
-        // TODO add verification that input value is >0
+        // TODO add verification that input value is >0 and an integer
         // TODO test weird input files
 
         // Define output filename for easier use throughout the program
         String outfile = args[1];
 
-        // Import the file
-        int maxProblemSize = importProblemSize(args[0]);
+        // Delete the previous file
+        deletePreviousFile(outfile);
+
+        int maxProblemSize = 0;
+
+        // Import the input size file
+        try {
+            maxProblemSize = importProblemSize(args[0]);
+        }
+        catch (InputMismatchException mismatch) {
+            System.out.println("Invalid input for problem size. Input must be an integer. Try again.");
+            System.exit(1);
+        }
+
+        // Ensure user has entered positive integer
+        if (maxProblemSize < 1) {
+            System.out.println("Invalid input for problem size. Input must be greater than 0. Try again.");
+            System.exit(1);
+        }
+
 
         // Define the towers
         char towerA = 'A';
@@ -45,6 +64,10 @@ public class Lab2 {
         long startTime;
         long endTime;
         long runTime;
+
+        // Declare arrays to store runtimes for easier printing at the end
+        long recursiveRuntimes[] = new long[maxProblemSize];
+        long iterativeRuntimes[] = new long[maxProblemSize];
 
         /*
         // ******** Recursive solution ********
@@ -61,12 +84,15 @@ public class Lab2 {
             endTime = System.currentTimeMillis();
             runTime = endTime - startTime;
             printStatsToFile(runProblemSize, runTime, "Recursive", outfile);
+            recursiveRuntimes[runProblemSize-1] = runTime;
         }
         */
-        moveRingsRecursive(7, towerA, towerB, towerC, outfile);
-        System.out.println("\n\n*********");
-        moveRingsIterative(7, outfile);
-        /*
+
+        //moveRingsRecursive(7, towerA, towerB, towerC, outfile);
+        //System.out.println("\n\n********* Iterative results");
+        //moveRingsIterative(7, outfile);
+
+
         // ******** Iterative solution ********
         for (int runProblemSize = 1; runProblemSize <= maxProblemSize; runProblemSize++) {
 
@@ -80,7 +106,22 @@ public class Lab2 {
             endTime = System.currentTimeMillis();
             runTime = endTime - startTime;
             printStatsToFile(runProblemSize, runTime, "Iterative", outfile);
-        } */
+            iterativeRuntimes[runProblemSize-1] = runTime;
+        }
+
+        //moveRingsIterative(31, outfile);
+
+        // TODO: add saving of summary statistics and print a table thing?
+
+        System.out.println("Program completed for n = " + maxProblemSize);
+
+        // Print summary stats to file
+        System.out.println("\n\nSummary statistics:");
+        System.out.println("Number of rings\t\tSolution type\t\tRuntime");
+        for (int k = 0; k < maxProblemSize; k++) {
+            System.out.println(k+1 + "\t\t" + "Recursive\t\t" + recursiveRuntimes[k-1]);
+            System.out.println(k+1 + "\t\t" + "Iterative\t\t" + iterativeRuntimes[k-1]);
+        }
     }
 
 
@@ -142,7 +183,7 @@ public class Lab2 {
             rtExc.toString();
         }
 
-        // TODO remove this temp print statement
+        // TODO remove this temp print statement - output does not go to console
         System.out.print("\nNumber of rings: " + problemSize);
         System.out.print("\nSolution type: " + runType);
         System.out.print("\nRuntime: " + runtime + "ms");
@@ -169,8 +210,8 @@ public class Lab2 {
             output.write(" from tower " + originTower + " to tower " + destinationTower);
 
             // TODO remove this temp print statement
-            System.out.print("\nMove disk " + disk);
-            System.out.print(" from tower " + originTower + " to tower " + destinationTower);
+            //System.out.print("\nMove disk " + disk);
+            //System.out.print(" from tower " + originTower + " to tower " + destinationTower);
 
 
             output.close();
@@ -235,7 +276,7 @@ public class Lab2 {
         }
 
         // Calculate the number of moves in the problem
-        int numMoves = (int) (Math.pow(2, problemSize) - 1);
+        long numMoves = (long) (Math.pow(2, problemSize) - 1);
 
         // Swap the towers, if the problem size is even
         if (problemSize % 2 == 0) {
@@ -244,7 +285,7 @@ public class Lab2 {
         }
 
         // Perform the iterative moves
-        for (int j = 1; j <= numMoves; j++) {
+        for (long j = 1; j <= numMoves; j++) {
             if (j % 3 == 0) {
 
                 // Move from B to C
@@ -301,6 +342,7 @@ public class Lab2 {
                     System.out.println(so.toString());
                 }
             }
+            //System.out.println("j = " + j);
         }
     }
 
@@ -318,25 +360,37 @@ public class Lab2 {
         // If one of the towers is empty, move the ring to the empty tower
         if (tower1.isEmpty()) {
             tempDisk = tower2.pop();
-            printMoveToFile(tempDisk, tower2char, tower1char, outputFile);
+            //printMoveToFile(tempDisk, tower2char, tower1char, outputFile);
             tower1.push(tempDisk);
         }
         else if (tower2.isEmpty()){
             tempDisk = tower1.pop();
-            printMoveToFile(tempDisk, tower1char, tower2char, outputFile);
+            //printMoveToFile(tempDisk, tower1char, tower2char, outputFile);
             tower2.push(tempDisk);
         }
 
         // A larger disk cannot go on top of a smaller disk
         else if (tower1.peek() < tower2.peek()) {
             tempDisk = tower1.pop();
-            printMoveToFile(tempDisk, tower1char, tower2char, outputFile);
+            //printMoveToFile(tempDisk, tower1char, tower2char, outputFile);
             tower2.push(tempDisk);
         }
         else if (tower2.peek() < tower1.peek()) {
             tempDisk = tower2.pop();
-            printMoveToFile(tempDisk, tower2char, tower1char, outputFile);
+            //printMoveToFile(tempDisk, tower2char, tower1char, outputFile);
             tower1.push(tempDisk);
         }
+    }
+
+    /**
+     * This method deletes the previous file, if one exists of the same name.
+     *
+     * @param filename         The name of the output file, specified in runtime parameters
+     */
+    private static void deletePreviousFile(String filename) {
+        File oldFile = new File(filename);
+
+        oldFile.delete();
+        System.out.println("Previous file \'" + filename + "\' deleted.\n");
     }
 }
