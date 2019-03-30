@@ -4,14 +4,13 @@
   output file.
 
   @author Skyler Carlson
- * @version 1.2
+ * @version 1.3
  * @since 2019-03-13
  */
 
 import java.io.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-//import java.util.Stack;
 
 public class Lab2 {
 
@@ -28,7 +27,6 @@ public class Lab2 {
             System.exit(1);
         }
 
-        // TODO add verification that input value is >0 and an integer
         // TODO test weird input files
 
         // Define output filename for easier use throughout the program
@@ -75,80 +73,53 @@ public class Lab2 {
         for (int runProblemSize = 1; runProblemSize <= maxProblemSize; runProblemSize++) {
 
             // Start the timer
-            //startTime = System.currentTimeMillis();
             startTime = System.nanoTime();
 
             // Recursive solution
             moveRingsRecursive(runProblemSize, towerA, towerB, towerC, outfile);
 
             // Stop the timer and send to results
-            //endTime = System.currentTimeMillis();
             endTime = System.nanoTime();
             runTime = endTime - startTime;
             printStatsToFile(runProblemSize, runTime, "Recursive", outfile);
             recursiveRuntimes[runProblemSize-1] = runTime;
         }
 
-
-        //moveRingsRecursive(7, towerA, towerB, towerC, outfile);
-        //System.out.println("\n\n********* Iterative results");
-        //moveRingsIterative(7, outfile);
-
-
         // ******** Iterative solution ********
         for (int runProblemSize = 1; runProblemSize <= maxProblemSize; runProblemSize++) {
 
             // Start the timer
-            //startTime = System.currentTimeMillis();
             startTime = System.nanoTime();
             // Recursive solution
             moveRingsIterative(runProblemSize, outfile);
 
             // Stop the timer and send to results
-            //endTime = System.currentTimeMillis();
             endTime = System.nanoTime();
             runTime = endTime - startTime;
             printStatsToFile(runProblemSize, runTime, "Iterative", outfile);
             iterativeRuntimes[runProblemSize-1] = runTime;
         }
 
-        //moveRingsIterative(31, outfile);
-
-        // TODO: add saving of summary statistics and print a table thing?
-
+        // Print message that program has completed
         System.out.println("Program completed for n = " + maxProblemSize);
 
-        // Print summary stats to console
-        // TODO: add printing to file
-
-        // Create FileWriter object
+        // Create FileWriter object to print summary statistics to file
         FileWriter output;
         String tempRecursiveString;
         String tempIterativeString;
         String headerString;
 
         try {
-            // TODO: remove these console print statements
-            System.out.println("\n\n----------Summary statistics----------");
-            System.out.print("# rings\t\tSolution type\t\tRuntime (ns)");
-
             // Create FileWriter object in append mode
             output = new FileWriter(outfile, true);
 
             // Print the headers
-            output.write("\n\n----------Summary statistics----------\n");
+            output.write("\n\n-----------Summary statistics------------\n");
             headerString = String.format("\n%7s%15s%19s", "# rings", "Solution type", "Runtime (ns)");
-            //output.write("# rings\t\tSolution type\t\tRuntime (ns)");
             output.write(headerString);
-
-
 
             // Loop through the runtime arrays
             for (int k = 0; k < maxProblemSize; k++) {
-
-                // TODO: remove these console print statements
-                System.out.format("\n%10d%15s%19d", k+1, "Recursive", recursiveRuntimes[k]);
-                System.out.format("\n%10d%15s%19d", k+1, "Iterative", iterativeRuntimes[k]);
 
                 // Format output strings
                 tempRecursiveString = String.format("\n%7d%15s%19d", k+1, "Recursive", recursiveRuntimes[k]);
@@ -160,16 +131,10 @@ public class Lab2 {
             }
 
             output.close();
-
-
         }
         catch (IOException ioExc) {
             ioExc.toString();
         }
-
-
-
-
     }
 
 
@@ -208,7 +173,6 @@ public class Lab2 {
     private static void printStatsToFile(int problemSize, long runtime, String runType,
         String outputFile) {
 
-
         // Create FileWriter object
         FileWriter output;
 
@@ -218,8 +182,7 @@ public class Lab2 {
             output.write("\nNumber of rings: " + problemSize);
             output.write("\nSolution type: " + runType);
             output.write("\nRuntime: " + runtime + "ns");
-            output.write("\n\n-----------------------------\n");
-
+            output.write("\n\n-----------------------------------------\n");
             output.close();
         }
         catch (IOException ioExc) {
@@ -228,12 +191,6 @@ public class Lab2 {
         catch (RuntimeException rtExc) {
             rtExc.toString();
         }
-
-        // TODO remove this temp print statement - output does not go to console
-        System.out.print("\nNumber of rings: " + problemSize);
-        System.out.print("\nSolution type: " + runType);
-        System.out.print("\nRuntime: " + runtime + "ns");
-        System.out.print("\n\n-----------------------------\n");
     }
 
     /**
@@ -275,13 +232,13 @@ public class Lab2 {
 
         // Base case if n = 1
         if (remainingDisks == 1) {
-            //printMoveToFile(remainingDisks, originTower, destTower, outputFile);
+            printMoveToFile(remainingDisks, originTower, destTower, outputFile);
             return;
         }
 
         // Move n-1 disks to the auxiliary tower, using the destination tower as the auxiliary
         moveRingsRecursive(remainingDisks - 1, originTower, destTower, auxiliaryTower, outputFile);
-        //printMoveToFile(remainingDisks, originTower, destTower, outputFile);
+        printMoveToFile(remainingDisks, originTower, destTower, outputFile);
 
         // Move the n-1 disks from the auxiliary tower to the destination tower, using the origin tower as the auxiliary
         moveRingsRecursive(remainingDisks - 1, auxiliaryTower, originTower, destTower, outputFile);
@@ -329,13 +286,8 @@ public class Lab2 {
             if (j % 3 == 0) {
 
                 // Move from B to C
-                try { // TODO remove this trc block
-
+                try { // TODO remove this trc block?
                     checkMoveIterative(auxiliaryTower, destinationTower, auxTowerChar, destinationTowerChar, outputFile);
-
-                    //tempDisk = auxiliaryTower.pop();
-                    //printMoveToFile(tempDisk, auxTowerChar, destinationTowerChar, outputFile );
-                    //destinationTower.push(tempDisk);
                 }
                 catch (StackUnderflow su) {
                     System.out.println(su.toString());
@@ -347,13 +299,8 @@ public class Lab2 {
             else if (j % 3 == 1) {
 
                 // Move from A to C
-                try { // TODO remove this trc block
-
+                try { // TODO remove this trc block?
                     checkMoveIterative(originTower, destinationTower, originTowerChar, destinationTowerChar, outputFile);
-                    
-                    //tempDisk = originTower.pop();
-                    //printMoveToFile(tempDisk, originTowerChar, destinationTowerChar, outputFile );
-                    //destinationTower.push(tempDisk);
                 }
                 catch (StackUnderflow su) {
                     System.out.println(su.toString());
@@ -365,15 +312,8 @@ public class Lab2 {
             else if (j % 3 == 2) {
 
                 // Move from A to B
-                try { // TODO remove this trc block
-
+                try { // TODO remove this trc block?
                     checkMoveIterative(originTower, auxiliaryTower, originTowerChar, auxTowerChar, outputFile);
-
-
-
-                    //tempDisk = originTower.pop();
-                    //printMoveToFile(tempDisk, originTowerChar, auxTowerChar, outputFile );
-                    //auxiliaryTower.push(tempDisk);
                 }
                 catch (StackUnderflow su) {
                     System.out.println(su.toString());
@@ -382,7 +322,6 @@ public class Lab2 {
                     System.out.println(so.toString());
                 }
             }
-            //System.out.println("j = " + j);
         }
     }
 
@@ -400,24 +339,24 @@ public class Lab2 {
         // If one of the towers is empty, move the ring to the empty tower
         if (tower1.isEmpty()) {
             tempDisk = tower2.pop();
-            //printMoveToFile(tempDisk, tower2char, tower1char, outputFile);
+            printMoveToFile(tempDisk, tower2char, tower1char, outputFile);
             tower1.push(tempDisk);
         }
         else if (tower2.isEmpty()){
             tempDisk = tower1.pop();
-            //printMoveToFile(tempDisk, tower1char, tower2char, outputFile);
+            printMoveToFile(tempDisk, tower1char, tower2char, outputFile);
             tower2.push(tempDisk);
         }
 
         // A larger disk cannot go on top of a smaller disk
         else if (tower1.peek() < tower2.peek()) {
             tempDisk = tower1.pop();
-            //printMoveToFile(tempDisk, tower1char, tower2char, outputFile);
+            printMoveToFile(tempDisk, tower1char, tower2char, outputFile);
             tower2.push(tempDisk);
         }
         else if (tower2.peek() < tower1.peek()) {
             tempDisk = tower2.pop();
-            //printMoveToFile(tempDisk, tower2char, tower1char, outputFile);
+            printMoveToFile(tempDisk, tower2char, tower1char, outputFile);
             tower1.push(tempDisk);
         }
     }
@@ -429,7 +368,6 @@ public class Lab2 {
      */
     private static void deletePreviousFile(String filename) {
         File oldFile = new File(filename);
-
         oldFile.delete();
         System.out.println("Previous file \'" + filename + "\' deleted.\n");
     }
