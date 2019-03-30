@@ -60,7 +60,7 @@ public class Lab2 {
         long endTime;
         long runTime;
 
-        // Declare arrays to store runtimes for easier printing at the end
+        // Declare arrays to store run times for easier printing at the end
         long recursiveRunTimes[] = new long[maxProblemSize];
         long iterativeRunTimes[] = new long[maxProblemSize];
 
