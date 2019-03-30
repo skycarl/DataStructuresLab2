@@ -114,9 +114,10 @@ public class Lab2 {
      */
     private static void printSummaryStats(String outfile, int maxProblemSize,
         long[] recursiveRunTimes, long[] iterativeRunTimes) {
+
         // Create FileWriter object to print summary statistics to file
         FileWriter output;
-        String tempRecursiveString;
+        String tempOutputString;
         String tempIterativeString;
         String headerString;
 
@@ -125,20 +126,18 @@ public class Lab2 {
             output = new FileWriter(outfile, true);
 
             // Print the headers
-            output.write("\n\n-----------Summary statistics------------\n");
-            headerString = String.format("\n%7s%15s%19s", "# rings", "Solution type", "Runtime (ns)");
+            output.write("\n\n-------------Summary statistics-------------\n");
+            headerString = String.format("\n%7s%19s%19s", "# rings", "Recursive (ns)", "Iterative (ns)");
             output.write(headerString);
 
             // Loop through the runtime arrays
             for (int k = 0; k < maxProblemSize; k++) {
 
                 // Format output strings
-                tempRecursiveString = String.format("\n%7d%15s%19d", k+1, "Recursive", recursiveRunTimes[k]);
-                tempIterativeString = String.format("\n%7d%15s%19d", k+1, "Iterative", iterativeRunTimes[k]);
+                tempOutputString = String.format("\n%7d%19d%19d", k+1, recursiveRunTimes[k], iterativeRunTimes[k]);
 
                 // Print the data to the table
-                output.write(tempRecursiveString);
-                output.write(tempIterativeString);
+                output.write(tempOutputString);
             }
 
             output.close();
@@ -166,7 +165,8 @@ public class Lab2 {
             problemSize = inputScanner.nextInt();
 
         } catch (IOException ioExc) {
-            ioExc.toString();
+            System.out.println("Error reading file. Program exiting.");
+            System.exit(1);
         }
 
         return problemSize;
@@ -175,7 +175,7 @@ public class Lab2 {
 
     /**
      * This method accepts a value and an output file name and writes the value to the file.
-     * @param problemSize       Integer representing the number of rings involved in the problem.
+     * @param problemSize       Integer representing the max number of rings involved in the problem.
      * @param runtime           Double that is intended to denote the runtime of the function.
      * @param runType           String description of the function.
      * @param outputFile        String for the output file name.
@@ -193,7 +193,7 @@ public class Lab2 {
             output.write("\nNumber of rings: " + problemSize);
             output.write("\nSolution type: " + runType);
             output.write("\nRuntime: " + runtime + "ns");
-            output.write("\n\n-----------------------------------------\n");
+            output.write("\n\n--------------------------------------------\n");
             output.close();
         }
         catch (IOException ioExc) {
@@ -235,30 +235,30 @@ public class Lab2 {
      * @param remainingDisks        The number of disks remaining on the original tower.
      * @param originTower           The identifier of the origin tower.
      * @param auxiliaryTower        The identifier of the auxiliary tower.
-     * @param destTower             The identifier or the destination tower.
+     * @param destinationTower             The identifier or the destination tower.
      * @param outputFile            The file name of the output file.
      */
     private static void moveRingsRecursive(int remainingDisks, char originTower,
-        char auxiliaryTower, char destTower, String outputFile) {
+        char auxiliaryTower, char destinationTower, String outputFile) {
 
         // Base case if n = 1
         if (remainingDisks == 1) {
-            printMoveToFile(remainingDisks, originTower, destTower, outputFile);
+            printMoveToFile(remainingDisks, originTower, destinationTower, outputFile);
             return;
         }
 
         // Move n-1 disks to the auxiliary tower, using the destination tower as the auxiliary
-        moveRingsRecursive(remainingDisks - 1, originTower, destTower, auxiliaryTower, outputFile);
-        printMoveToFile(remainingDisks, originTower, destTower, outputFile);
+        moveRingsRecursive(remainingDisks - 1, originTower, destinationTower, auxiliaryTower, outputFile);
+        printMoveToFile(remainingDisks, originTower, destinationTower, outputFile);
 
         // Move the n-1 disks from the auxiliary tower to the destination tower, using the origin tower as the auxiliary
-        moveRingsRecursive(remainingDisks - 1, auxiliaryTower, originTower, destTower, outputFile);
+        moveRingsRecursive(remainingDisks - 1, auxiliaryTower, originTower, destinationTower, outputFile);
     }
 
     /**
      * This method performs the operations iteratively.
-     * @param problemSize
-     * @param outputFile
+     * @param problemSize           Integer representing the max number of rings involved in the problem.
+     * @param outputFile            The file name of the output file.
      */
     private static void moveRingsIterative(int problemSize, String outputFile) {
 
@@ -266,7 +266,7 @@ public class Lab2 {
         Stack originTower = new Stack(problemSize);
         Stack auxiliaryTower = new Stack(problemSize);
         Stack destinationTower = new Stack(problemSize);
-        int tempDisk;
+        //int tempDisk;
 
         // Create and initialize character representations of the towers
         char originTowerChar = 'A';
