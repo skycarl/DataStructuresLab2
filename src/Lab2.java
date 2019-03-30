@@ -69,24 +69,26 @@ public class Lab2 {
         long recursiveRuntimes[] = new long[maxProblemSize];
         long iterativeRuntimes[] = new long[maxProblemSize];
 
-        /*
+
         // ******** Recursive solution ********
         // Loop through problems from 1 to size specified in input file
         for (int runProblemSize = 1; runProblemSize <= maxProblemSize; runProblemSize++) {
 
             // Start the timer
-            startTime = System.currentTimeMillis();
+            //startTime = System.currentTimeMillis();
+            startTime = System.nanoTime();
 
             // Recursive solution
             moveRingsRecursive(runProblemSize, towerA, towerB, towerC, outfile);
 
             // Stop the timer and send to results
-            endTime = System.currentTimeMillis();
+            //endTime = System.currentTimeMillis();
+            endTime = System.nanoTime();
             runTime = endTime - startTime;
             printStatsToFile(runProblemSize, runTime, "Recursive", outfile);
             recursiveRuntimes[runProblemSize-1] = runTime;
         }
-        */
+
 
         //moveRingsRecursive(7, towerA, towerB, towerC, outfile);
         //System.out.println("\n\n********* Iterative results");
@@ -97,13 +99,14 @@ public class Lab2 {
         for (int runProblemSize = 1; runProblemSize <= maxProblemSize; runProblemSize++) {
 
             // Start the timer
-            startTime = System.currentTimeMillis();
-
+            //startTime = System.currentTimeMillis();
+            startTime = System.nanoTime();
             // Recursive solution
             moveRingsIterative(runProblemSize, outfile);
 
             // Stop the timer and send to results
-            endTime = System.currentTimeMillis();
+            //endTime = System.currentTimeMillis();
+            endTime = System.nanoTime();
             runTime = endTime - startTime;
             printStatsToFile(runProblemSize, runTime, "Iterative", outfile);
             iterativeRuntimes[runProblemSize-1] = runTime;
@@ -115,13 +118,58 @@ public class Lab2 {
 
         System.out.println("Program completed for n = " + maxProblemSize);
 
-        // Print summary stats to file
-        System.out.println("\n\nSummary statistics:");
-        System.out.println("Number of rings\t\tSolution type\t\tRuntime");
-        for (int k = 0; k < maxProblemSize; k++) {
-            System.out.println(k+1 + "\t\t" + "Recursive\t\t" + recursiveRuntimes[k-1]);
-            System.out.println(k+1 + "\t\t" + "Iterative\t\t" + iterativeRuntimes[k-1]);
+        // Print summary stats to console
+        // TODO: add printing to file
+
+        // Create FileWriter object
+        FileWriter output;
+        String tempRecursiveString;
+        String tempIterativeString;
+        String headerString;
+
+        try {
+            // TODO: remove these console print statements
+            System.out.println("\n\n----------Summary statistics----------");
+            System.out.print("# rings\t\tSolution type\t\tRuntime (ns)");
+
+            // Create FileWriter object in append mode
+            output = new FileWriter(outfile, true);
+
+            // Print the headers
+            output.write("\n\n----------Summary statistics----------\n");
+            headerString = String.format("\n%7s%15s%19s", "# rings", "Solution type", "Runtime (ns)");
+            //output.write("# rings\t\tSolution type\t\tRuntime (ns)");
+            output.write(headerString);
+
+
+
+            // Loop through the runtime arrays
+            for (int k = 0; k < maxProblemSize; k++) {
+
+                // TODO: remove these console print statements
+                System.out.format("\n%10d%15s%19d", k+1, "Recursive", recursiveRuntimes[k]);
+                System.out.format("\n%10d%15s%19d", k+1, "Iterative", iterativeRuntimes[k]);
+
+                // Format output strings
+                tempRecursiveString = String.format("\n%7d%15s%19d", k+1, "Recursive", recursiveRuntimes[k]);
+                tempIterativeString = String.format("\n%7d%15s%19d", k+1, "Iterative", iterativeRuntimes[k]);
+
+                // Print the data to the table
+                output.write(tempRecursiveString);
+                output.write(tempIterativeString);
+            }
+
+            output.close();
+
+
         }
+        catch (IOException ioExc) {
+            ioExc.toString();
+        }
+
+
+
+
     }
 
 
@@ -131,8 +179,6 @@ public class Lab2 {
      * @return problemSize      An integer denoting the size of the problem.
      */
     private static int importProblemSize(String filename) {
-
-
 
         // Import input file
         int problemSize = -1;
@@ -171,7 +217,7 @@ public class Lab2 {
             output = new FileWriter(outputFile, true);
             output.write("\nNumber of rings: " + problemSize);
             output.write("\nSolution type: " + runType);
-            output.write("\nRuntime: " + runtime + "ms");
+            output.write("\nRuntime: " + runtime + "ns");
             output.write("\n\n-----------------------------\n");
 
             output.close();
@@ -186,7 +232,7 @@ public class Lab2 {
         // TODO remove this temp print statement - output does not go to console
         System.out.print("\nNumber of rings: " + problemSize);
         System.out.print("\nSolution type: " + runType);
-        System.out.print("\nRuntime: " + runtime + "ms");
+        System.out.print("\nRuntime: " + runtime + "ns");
         System.out.print("\n\n-----------------------------\n");
     }
 
@@ -208,12 +254,6 @@ public class Lab2 {
             output = new FileWriter(outputFile, true);
             output.write("\nMove disk " + disk);
             output.write(" from tower " + originTower + " to tower " + destinationTower);
-
-            // TODO remove this temp print statement
-            //System.out.print("\nMove disk " + disk);
-            //System.out.print(" from tower " + originTower + " to tower " + destinationTower);
-
-
             output.close();
         }
         catch (IOException ioExc) {
@@ -235,13 +275,13 @@ public class Lab2 {
 
         // Base case if n = 1
         if (remainingDisks == 1) {
-            printMoveToFile(remainingDisks, originTower, destTower, outputFile);
+            //printMoveToFile(remainingDisks, originTower, destTower, outputFile);
             return;
         }
 
         // Move n-1 disks to the auxiliary tower, using the destination tower as the auxiliary
         moveRingsRecursive(remainingDisks - 1, originTower, destTower, auxiliaryTower, outputFile);
-        printMoveToFile(remainingDisks, originTower, destTower, outputFile);
+        //printMoveToFile(remainingDisks, originTower, destTower, outputFile);
 
         // Move the n-1 disks from the auxiliary tower to the destination tower, using the origin tower as the auxiliary
         moveRingsRecursive(remainingDisks - 1, auxiliaryTower, originTower, destTower, outputFile);

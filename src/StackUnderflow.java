@@ -8,12 +8,6 @@
  */
 
 public class StackUnderflow extends Exception {
-  int val;
-
-  // Test constructor to find exception
-  public StackUnderflow(int val) {
-    this.val = val;
-  }
 
   /**
    * Default constructor.
