@@ -61,8 +61,8 @@ public class Lab2 {
         long runTime;
 
         // Declare arrays to store run times for easier printing at the end
-        long recursiveRunTimes[] = new long[maxProblemSize];
-        long iterativeRunTimes[] = new long[maxProblemSize];
+        long[] recursiveRunTimes = new long[maxProblemSize];
+        long[] iterativeRunTimes = new long[maxProblemSize];
 
 
         // ******** Recursive solution ********
@@ -119,7 +119,6 @@ public class Lab2 {
         // Create FileWriter object to print summary statistics to file
         FileWriter output;
         String tempOutputString;
-        String tempIterativeString;
         String headerString;
 
         try {
@@ -144,7 +143,8 @@ public class Lab2 {
             output.close();
         }
         catch (IOException ioExc) {
-            ioExc.toString();
+            System.out.println("Error writing to file " + ioExc.getMessage() + ". Program exiting.");
+            System.exit(1);
         }
     }
 
@@ -166,7 +166,7 @@ public class Lab2 {
             problemSize = inputScanner.nextInt();
 
         } catch (IOException ioExc) {
-            System.out.println("Error reading file. Program exiting.");
+            System.out.println("Error reading file " + ioExc.getMessage() + ". Program exiting.");
             System.exit(1);
         }
 
@@ -198,10 +198,7 @@ public class Lab2 {
             output.close();
         }
         catch (IOException ioExc) {
-            ioExc.toString();
-        }
-        catch (RuntimeException rtExc) {
-            rtExc.toString();
+            System.out.println("Error writing to file " + ioExc.getMessage() + ". Program exiting.");
         }
     }
 
