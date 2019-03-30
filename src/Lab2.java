@@ -87,6 +87,7 @@ public class Lab2 {
 
             // Start the timer
             startTime = System.nanoTime();
+
             // Recursive solution
             moveRingsIterative(runProblemSize, outfile);
 
