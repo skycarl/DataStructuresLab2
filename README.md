@@ -10,3 +10,4 @@ java Lab2 ProblemSize.txt output.txt
 IDE: IntelliJ IDEA 2019.1 (Community Edition)
 JRE: 1.8.0_152-release-1343-b26 x86_64
 JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
+OS: macOS Mojave 10.14.4

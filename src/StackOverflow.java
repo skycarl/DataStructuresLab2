@@ -4,7 +4,7 @@
  *
  * @author Skyler Carlson
  * @version 1.1
- * @since: 2019-03-01
+ * @since 2019-03-01
  */
 
 public class StackOverflow extends Exception {

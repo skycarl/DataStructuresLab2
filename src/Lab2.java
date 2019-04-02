@@ -366,11 +366,13 @@ public class Lab2 {
     /**
      * This class finds which move between the two towers passed is valid. It then makes the valid move.
      *
-     * @param tower1     The tower from which the ring is being moved.
-     * @param tower2     The tower to which the ring is being moved.
-     * @param tower1char The char representation of the source tower.
-     * @param tower2char The char representation of the destination tower.
-     * @param outputFile A string representing the name of the output file.
+     * @param tower1            The tower from which the ring is being moved.
+     * @param tower2            The tower to which the ring is being moved.
+     * @param tower1char        The char representation of the source tower.
+     * @param tower2char        The char representation of the destination tower.
+     * @param outputFile        A string representing the name of the output file.
+     * @throws StackOverflow    An internal stack error has occurred.
+     * @throws StackUnderflow   An internal stack error has occurred.
      */
     private static void checkMoveIterative(Stack tower1, Stack tower2,
                                            char tower1char, char tower2char,
