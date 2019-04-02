@@ -9,19 +9,19 @@
 
 public class StackOverflow extends Exception {
 
-  /**
-   * Default constructor.
-   */
-  public StackOverflow() {
-  }
+    /**
+     * Default constructor.
+     */
+    public StackOverflow() {
+    }
 
-  /**
-   * This method returns information about the stack overflow.
-   *
-   * @return String output giving notice that stack overflow has occurred.
-   */
-  @Override
-  public String toString() {
-    return "Exception: stack overflow.";
-  }
+    /**
+     * This method returns information about the stack overflow.
+     *
+     * @return String output giving notice that stack overflow has occurred.
+     */
+    @Override
+    public String toString() {
+        return "Exception: stack overflow.";
+    }
 }

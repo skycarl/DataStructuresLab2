@@ -9,19 +9,19 @@
 
 public class StackUnderflow extends Exception {
 
-  /**
-   * Default constructor.
-   */
-  public StackUnderflow() {
-  }
+    /**
+     * Default constructor.
+     */
+    public StackUnderflow() {
+    }
 
-  /**
-   * This method prints
-   *
-   * @return String output giving information that stack underflow has occurred.
-   */
-  @Override
-  public String toString() {
-    return "Exception: stack underflow.";
-  }
+    /**
+     * This method prints info that a stack underflow has occurred.
+     *
+     * @return String output giving information that stack underflow has occurred.
+     */
+    @Override
+    public String toString() {
+        return "Exception: stack underflow.";
+    }
 }
