@@ -4,8 +4,10 @@ Warning: it is not recommended to run this for greater than approximately 20 dis
 
 The input file must contain an integer indicating the maximum number of disks to be solved. To run, specify input file and output file names as runtime parameters. For example:
 
+```
 javac Lab2.java
 java Lab2 ProblemSize.txt output.txt
+```
 
 IDE: IntelliJ IDEA 2019.1 (Community Edition)
 JRE: 1.8.0_152-release-1343-b26 x86_64
